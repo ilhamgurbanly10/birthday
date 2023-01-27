@@ -10,6 +10,44 @@
 </head>
 <body>
 
+    <form onsubmit="sendForm(event)" >
+
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+
+            <label for="month">Ay</label>
+
+            <select name="month" id="month" seleted="0">
+                <option value="0">Yanvar</option>
+                <option value="1">Fevral</option>
+                <option value="2">Mart</option>
+                <option value="3">Aprel</option>
+                <option value="4">May</option>
+                <option value="5">İyun</option>
+                <option value="6">İyul</option>
+                <option value="7">Avqust</option>
+                <option value="8">Sentyabr</option>
+                <option value="9">Oktyabr</option>
+                <option value="10">Noyabr</option>
+                <option value="11">Dekabr</option>
+            </select>
+
+        </div>
+
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+
+            <label for="month">Gün</label>
+            <input type="number" name="day" id="day">
+
+        </div>  
+        
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+
+           <button type="Submit">Fərqi Göstər</button>
+
+        </div>
+
+
+    </form>
 
     <div> 
         Doğum gününə qalır: 
@@ -17,6 +55,15 @@
     </div>
 
     <script>
+
+        const month = document.getElementById('month');
+        const day = document.getElementById('day');
+
+        const sendForm = (event) => {
+            event.preventDefault();
+            if (day.value == "") return;
+            birthdayDate.innerHTML = showTimeTillBirthday(month.value, day.value);
+        }
 
         const birthdayDate = document.getElementById('birthdayDate');
 
@@ -52,10 +99,6 @@
             return text;
 
         }
-
-        // 3 - month (0-11)
-        // 8 - day 
-        birthdayDate.innerHTML = showTimeTillBirthday(3, 8);
 
     </script>
     
