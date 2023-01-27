@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+
+</head>
+<body>
+
+
+    <div> 
+        Doğum gününə qalır: 
+        <span id="birthdayDate"></span>
+    </div>
+
+    <script>
+
+        const birthdayDate = document.getElementById('birthdayDate');
+
+        const showTimeTillBirthday = (month = 0, day = 1) => {
+            
+            // variables
+            const now = new Date();
+            let myBirthdayDate = new Date();
+            myBirthdayDate.setMonth(month);
+            myBirthdayDate.setDate(day);
+            myBirthdayDate.setHours(0, 0, 0);
+            let text;
+
+            // in-this-year-or-in-next-year
+            if (myBirthdayDate < now) myBirthdayDate.setFullYear(now.getFullYear() + 1);
+
+            // getting-milliseconds-till-birthday
+            const milliseconds = myBirthdayDate.getTime() - now.getTime();
+
+            const getText = () => {
+
+                const weeks = Math.floor(milliseconds / (1000 * 60 * 60 * 24 * 7));
+                const days = Math.floor(milliseconds % (1000 * 60 * 60 * 24 * 7) / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((milliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
+                text = `${weeks} həftə, ${days} gün, ${hours} saat, ${minutes} dəqiqə, ${seconds} saniyə`;
+                
+            }
+
+            getText();
+
+            return text;
+
+        }
+
+        // 3 - month (0-11)
+        // 8 - day 
+        birthdayDate.innerHTML = showTimeTillBirthday(3, 8);
+
+    </script>
+    
+</body>
+</html>
